@@ -1,6 +1,6 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.2",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.1",
     "parameters": {
         "virtualMachines_backendSERVER_name": {
             "defaultValue": "backendSERVER",
@@ -40,9 +40,9 @@
         }
     },
     "variables": {
-        "backendserver" : "backend2",
-        "nicname" : "backend2nic",
-        "backendpip" : "backend2publicip"
+        "backendsever":"backend2",
+        "nicname":"backend2nic",
+        "backendpip":"backendpip"
     },
     "resources": [
         {
@@ -72,8 +72,8 @@
                             "destinationAddressPrefixes": []
                         }
                     },
-					{
-                        "name": "SSH",
+                    {
+                        "name": "SSh",
                         "properties": {
                             "protocol": "UDP",
                             "sourcePortRange": "*",
@@ -320,7 +320,7 @@
         {
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2019-03-01",
-            "name": "[variables('backendserver')]",
+            "name": "[variables('backendsever')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkInterfaces', variables('nicname'))]"
@@ -341,7 +341,7 @@
                     },
                     "osDisk": {
                         "osType": "Windows",
-                        "name": "[concat(variables('backendserver'), '_OsDisk_1_ef3ab3c577ea4dd5827852baae056008')]",
+                        "name": "[concat(variables('backendsever'), '_OsDisk_1_ef3ab3c577ea4dd5827852baae056008')]",
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
@@ -352,7 +352,7 @@
                     "dataDisks": []
                 },
                 "osProfile": {
-                    "computerName": "[variables('backendserver')]",
+                    "computerName": "[variables('backendsever')]",
                     "adminUsername": "beardmin",
                     "adminPassword": "mM%Vc!562yTj",
                     "windowsConfiguration": {
